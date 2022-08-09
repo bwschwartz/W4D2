@@ -1,12 +1,15 @@
-require_relative "piece"
+require_relative "Piece"
 
 class Board
+  def self.within_board?(pos)
+    pos.each { |dim| return false if dim < 0 || dim > 7 }
+    true
+  end
+
   def self.fill_board(board)
     piece_rows = [0, 1, 6, 7]
     board.map!.with_index do |row, i|
-      row.map! do |square|
-        square = Piece.new if piece_rows.include?(i)
-      end
+      row.map!.with_index {| square, j| square = Rook.new("black", board, [i, j]) if piece_rows.include?(i) }
     end
   end
 
@@ -18,7 +21,7 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    return false if empty?(start_pos) || !valid_pos?(end_pos)
+    return false if empty?(start_pos) || !Board.within_board?(end_pos)
 
     piece = self[start_pos]
     self[end_pos] = piece
@@ -31,10 +34,7 @@ class Board
     false
   end
 
-  def valid_pos?(pos)
-    pos.each { |dim| return false if dim < 0 || dim > 7 }
-    true
-  end
+
 
   def [](pos)
     row, col = pos
