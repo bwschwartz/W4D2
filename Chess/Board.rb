@@ -6,6 +6,11 @@ class Board
     true
   end
 
+  def self.get_color(board, pos)
+    return false if board[pos[0]][pos[1]].nil?
+    board[pos[0]][pos[1]].color
+  end
+
   def self.fill_board(board)
     piece_rows = [0, 1, 6, 7]
     board.map!.with_index do |row, i|
@@ -24,7 +29,9 @@ class Board
     return false if empty?(start_pos) || !Board.within_board?(end_pos)
     piece = self[start_pos]
     self[end_pos] = piece
+    board[start_pos[0]][start_pos[1]].pos = end_pos
     self[start_pos] = nil
+
     true
   end
 

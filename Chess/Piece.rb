@@ -1,9 +1,10 @@
+require "byebug"
 require_relative "Board"
 
 module Slidable
 
   HORIZONTAL_DIRS = [[0, 1], [1, 0], [0, -1], [-1, 0]]
-  DIALGONAL_DIRS = [[-1, -1], [-1, 1], [1, 1], [1, -1]]
+  DIAGONAL_DIRS = [[-1, -1], [-1, 1], [1, 1], [1, -1]]
 
   def horizontal_dirs
     HORIZONTAL_DIRS
@@ -17,6 +18,7 @@ end
 
 class Piece
   attr_reader :board, :color
+  attr_accessor :pos
 
   def initialize (color, board, pos)
     @color = color
@@ -33,10 +35,12 @@ class Piece
     valid_moves = []
 
     move_dirs.each do |direction|
+    
       cur_pos = @pos
+
       while Board.within_board?(cur_pos)
         cur_pos = Piece.add_pos(cur_pos, direction)
-        valid_moves << cur_pos if Board.within_board?(cur_pos) #&& @board[cur_pos[0]][cur_pos[1]].color != @color
+        valid_moves << cur_pos if Board.within_board?(cur_pos) && Board.get_color(@board, cur_pos) != color
       end
     end
 
