@@ -22,7 +22,6 @@ class Board
 
   def move_piece(start_pos, end_pos)
     return false if empty?(start_pos) || !Board.within_board?(end_pos)
-
     piece = self[start_pos]
     self[end_pos] = piece
     self[start_pos] = nil
@@ -33,8 +32,6 @@ class Board
     return true if pos == nil
     false
   end
-
-
 
   def [](pos)
     row, col = pos
@@ -47,3 +44,5 @@ class Board
   end
 
 end
+
+
