@@ -31,7 +31,6 @@ class Board
     self[end_pos] = piece
     board[start_pos[0]][start_pos[1]].pos = end_pos
     self[start_pos] = nil
-
     true
   end
 
