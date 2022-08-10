@@ -11,11 +11,22 @@ class Board
     board[pos[0]][pos[1]].color
   end
 
+  # def self.fill_board(board)
+  #   piece_rows = [0, 1, 6, 7]
+  #   board.map!.with_index do |row, i|
+  #     row.map!.with_index {| square, j| square = Knight.new("black", board, [i, j]) if piece_rows.include?(i) }
+  #   end
+  # end
+
   def self.fill_board(board)
-    piece_rows = [0, 1, 6, 7]
+    piece_rows = [1, 2]
     board.map!.with_index do |row, i|
-      row.map!.with_index {| square, j| square = Knight.new("black", board, [i, j]) if piece_rows.include?(i) }
+      color = :black if i == 1
+      color = :white if i == 2
+      row.map!.with_index {| square, j| square = Pawn.new(color, board, [i, j]) if piece_rows.include?(i) }
     end
+
+
   end
 
   attr_accessor :board
