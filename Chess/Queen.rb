@@ -5,7 +5,7 @@ class Queen < Piece
 
     def initialize (color, board, pos)
       super(color, board, pos)
-      @symbol = :queen
+      color == :white ? @symbol = " ♕ " : @symbol = " ♛ " 
     end
 
 

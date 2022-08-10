@@ -5,7 +5,7 @@ class Bishop < Piece
 
     def initialize (color, board, pos)
       super(color, board, pos)
-      @symbol = :bishop
+      color == :white ? @symbol = " ♗ " : @symbol = " ♝ " 
     end
 
     def move_dirs

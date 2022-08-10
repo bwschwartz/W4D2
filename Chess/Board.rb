@@ -22,30 +22,14 @@ class Board
     black_pawns = (0..7).map { |i| Pawn.new(:black, board, [1, i]) }
     board[1].map!.with_index { |position, i| white_pawns[i] }
     board[6].map!.with_index { |position, i| black_pawns[i] }
-    # board[7] = pieces.map.with_index { |piece, i| piece.new(:white, board, [7, i]) }
-
   end
-
-  # def self.fill_board(board)
-  #   piece_rows = [0, 1, 6, 7]
-  #   board.map!.with_index do |row, i|
-  #     row.map!.with_index {| square, j| square = Knight.new("black", board, [i, j]) if piece_rows.include?(i) }
-  #   end
-  # end
-
-  # def self.fill_board(board)
-  #   piece_rows = [1, 2]
-  #   board.map!.with_index do |row, i|
-  #     color = :black if i == 1
-  #     color = :white if i == 2
-  #     row.map!.with_index {| square, j| square = Pawn.new(color, board, [i, j]) if piece_rows.include?(i) }
-  #   end
 
   attr_accessor :board
 
   def initialize
     @board = Array.new(8) { Array.new(8) }
     Board.fill_board(@board)
+    Display.print_board(@board)
   end
 
   def move_piece(start_pos, end_pos)

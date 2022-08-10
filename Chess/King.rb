@@ -5,7 +5,7 @@ class King < Piece
 
     def initialize (color, board, pos)
       super(color, board, pos)
-      @symbol = :king
+      color == :white ? @symbol = " ♔ " : @symbol = " ♚ " 
     end
 
     def move_dirs
