@@ -12,22 +12,31 @@ class Board
   end
 
   # def self.fill_board(board)
-  #   piece_rows = [0, 1, 6, 7]
-  #   board.map!.with_index do |row, i|
-  #     row.map!.with_index {| square, j| square = Knight.new("black", board, [i, j]) if piece_rows.include?(i) }
-  #   end
+  #   pieces = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+
+  #   board[0] = pieces.map.with_index { |piece, i| piece.new(:black, @board, [0, i]) }
+
+  #   board[7] = pieces.map.with_index { |piece, i| piece.new(:white, @board, [7, i]) }
+
   # end
 
+
+
   def self.fill_board(board)
-    piece_rows = [1, 2]
+    piece_rows = [0, 1, 6, 7]
     board.map!.with_index do |row, i|
-      color = :black if i == 1
-      color = :white if i == 2
-      row.map!.with_index {| square, j| square = Pawn.new(color, board, [i, j]) if piece_rows.include?(i) }
+      row.map!.with_index {| square, j| square = Knight.new("black", board, [i, j]) if piece_rows.include?(i) }
     end
-
-
   end
+
+  # def self.fill_board(board)
+  #   piece_rows = [1, 2]
+  #   board.map!.with_index do |row, i|
+  #     color = :black if i == 1
+  #     color = :white if i == 2
+  #     row.map!.with_index {| square, j| square = Pawn.new(color, board, [i, j]) if piece_rows.include?(i) }
+  #   end
+
 
   attr_accessor :board
 

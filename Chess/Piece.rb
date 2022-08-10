@@ -5,11 +5,10 @@ class Piece
   attr_reader :board, :color
   attr_accessor :pos
 
-  def initialize (color, board, pos, symbol= :m)
+  def initialize (color, board, pos)
     @color = color
     @board = board
     @pos = pos
-    @symbol = symbol
   end
 
   def self.add_pos(p1, p2)
@@ -17,7 +16,7 @@ class Piece
   end
 
   def inspect
-    "#{@color}, #{@pos}, #{:symbol}"
+    "#{@color}, #{@pos}, #{@symbol}"
   end
 end
 
