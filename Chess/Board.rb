@@ -14,7 +14,7 @@ class Board
   def self.fill_board(board)
     piece_rows = [0, 1, 6, 7]
     board.map!.with_index do |row, i|
-      row.map!.with_index {| square, j| square = Rook.new("black", board, [i, j]) if piece_rows.include?(i) }
+      row.map!.with_index {| square, j| square = Knight.new("black", board, [i, j]) if piece_rows.include?(i) }
     end
   end
 
