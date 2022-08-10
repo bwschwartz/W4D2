@@ -1,4 +1,4 @@
-require_relative "Piece"
+require_relative "Requirements"
 
 class Board
   def self.within_board?(pos)

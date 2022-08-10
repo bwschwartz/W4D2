@@ -5,10 +5,11 @@ class Piece
   attr_reader :board, :color
   attr_accessor :pos
 
-  def initialize (color, board, pos)
+  def initialize (color, board, pos, symbol= :m)
     @color = color
     @board = board
     @pos = pos
+    @symbol = symbol
   end
 
   def self.add_pos(p1, p2)
@@ -16,7 +17,7 @@ class Piece
   end
 
   def inspect
-    "#{@color}, #{@pos}"
+    "#{@color}, #{@pos}, #{:symbol}"
   end
 end
 
@@ -27,7 +28,7 @@ module Slidable
 
   def valid_moves
     valid_moves = []
-
+    debugger
     move_dirs.each do |direction|
       cur_pos = @pos
       while Board.within_board?(cur_pos)
@@ -50,40 +51,17 @@ module Slidable
 
 end
 
-
-class Rook < Piece
-  include Slidable
-
-  def move_dirs
-    horizontal_dirs
-  end
-
-end
-
-class Bishop < Piece
-  include Slidable
-
-  def move_dirs
-    diagonal_dirs
-  end
-end
-
-class Queen < Piece
-  include Slidable
-
-  def move_dirs
-    diagonal_dirs + horizontal_dirs
-  end
-end
-
-
-
 module Stepable
 
   KNIGHT_DIRS = [ [-1, -2], [-2, -1], [-2,  1], [-1,  2], [ 1, -2], [ 2, -1], [ 2,  1], [ 1,  2] ]
+  KING_DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1], [-1, -1], [-1, 1], [1, 1], [1, -1]]
 
   def knight_dirs
     KNIGHT_DIRS
+  end
+
+  def king_dirs
+    KING_DIRS
   end
 
   def valid_moves
@@ -97,18 +75,3 @@ module Stepable
     valids
   end
 end
-
-class Knight < Piece
-
-  include Stepable
-
-  def move_dirs
-    knight_dirs
-  end
-
-end
-
-
-
-
-
