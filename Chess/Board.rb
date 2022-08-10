@@ -13,9 +13,16 @@ class Board
 
   def self.fill_board(board)
     pieces = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
-    backrow = pieces.map.with_index { |piece, i| piece.new(:black, @board, [0, i]) }
+    backrow = pieces.map.with_index { |piece, i| piece.new(:black, board, [0, i]) }
     board[0].map!.with_index { |position, i| backrow[i] }
-    # board[7] = pieces.map.with_index { |piece, i| piece.new(:white, @board, [7, i]) }
+    frontrow = pieces.map.with_index { |piece, i| piece.new(:white, board, [7, i]) }
+    board[7].map!.with_index { |position, i| frontrow[i] }
+
+    white_pawns = (0..7).map { |i| Pawn.new(:white, board, [6, i]) }
+    black_pawns = (0..7).map { |i| Pawn.new(:black, board, [1, i]) }
+    board[1].map!.with_index { |position, i| white_pawns[i] }
+    board[6].map!.with_index { |position, i| black_pawns[i] }
+    # board[7] = pieces.map.with_index { |piece, i| piece.new(:white, board, [7, i]) }
 
   end
 

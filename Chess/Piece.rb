@@ -27,7 +27,6 @@ module Slidable
 
   def valid_moves
     valid_moves = []
-    debugger
     move_dirs.each do |direction|
       cur_pos = @pos
       while Board.within_board?(cur_pos)

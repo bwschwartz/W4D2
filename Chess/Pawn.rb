@@ -14,6 +14,7 @@ class Pawn < Piece
   def initialize(color, board, pos)
     @first_move = true
     super(color, board, pos)
+    @symbol = :pawn
   end
 
   def valid_moves
